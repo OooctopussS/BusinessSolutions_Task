@@ -1,0 +1,27 @@
+﻿@model Business.Domain.OrderItem
+@using Business.WebApi.Common;
+
+@using (Html.BeginCollectionItem("Order.OrderItems"))
+{
+    <div class="orderItem-Container-item">
+        <div class="orderItem-Container-item-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" autocomplete="off" />
+        </div>
+
+        <div class="orderItem-Container-item-group">
+            <label asp-for="Quantity"></label>
+            <input asp-for="Quantity" autocomplete="off" placeholder="0,000"/>
+        </div>
+
+        <div class="orderItem-Container-item-group">
+            <label asp-for="Unit"></label>
+            <input asp-for="Unit" autocomplete="off" />
+        </div>
+
+        <div class="orderItem-Container-item-group">
+            <button type="button" onclick="deleteOrderItem(this);" class="btn-default">Удалить</button>
+            <span></span>
+        </div>
+    </div>
+}

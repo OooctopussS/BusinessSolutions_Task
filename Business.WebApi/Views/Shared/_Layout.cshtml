@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Business.WebApi - @ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    @RenderSection("head_Link", required: false)
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav-row">
+                <div class="logo-container">
+                    <a asp-controller="Home" asp-action="Index">Business.WebApi</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main" class="main">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-row">
+                <a asp-controller="Home" asp-action="Index">Business.WebApi Task</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

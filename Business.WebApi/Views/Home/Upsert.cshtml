@@ -1,0 +1,110 @@
+﻿@using Business.Domain;
+@model Business.WebApi.Models.OrderVm
+
+@{
+    ViewData["Title"] = "Создание заказа";
+
+    string inputValue = string.Empty;
+
+    if (Model.Order.Id != 0)
+    {
+        inputValue = "Сохранить";
+    }
+    else
+    {
+        inputValue = "Создать";
+    }
+
+    
+}
+
+@section head_Link
+{
+    <link rel="stylesheet" href="~/css/Upsert.min.css" />
+}
+
+<div class="main-row">
+    <form class="form" method="post">
+        @if (Model.Order.Id != 0)
+        {
+            ViewData["Title"] = "Редактирование заказа";
+            <input asp-for="Order.Id" type="hidden"/>
+        }
+        <div class="form-header">
+            <h2>@ViewData["Title"]</h2>
+        </div>
+        <div class="form-body">
+            <div class="form-body-order">
+                <div class="form-body-order-group">
+                    <label asp-for="Order.Number"></label>
+                    <input asp-for="Order.Number" autocomplete="off" />
+                    <span asp-validation-for="Order.Number"></span>
+                </div>
+                <div class="form-body-order-group">
+                    <label asp-for="Order.Date"></label>
+                    <input asp-for="Order.Date" autocomplete="off" type="datetime" value="@DateTime.Now"/>
+                    <span asp-validation-for="Order.Date"></span>
+                </div>
+                <div class="form-body-order-group">
+                    <label asp-for="Providers"></label>
+                    <select class="selectList"  asp-for="Order.ProviderId" asp-items="@Model.Providers">
+
+                    </select>
+                </div>
+                <div class="form-body-orderItems">
+                    <div class="orderItem-Container" id="orderItem-Container">
+                        <span asp-validation-for="Order"></span>
+                        @if (Model.Order.OrderItems != null)
+                        {
+                            for (int i = 0; i < Model.Order.OrderItems!.Count(); i++)
+                            {
+                                <div class="container-forDelete">
+                                    <partial name="_OrderItemEditor" model="Model.Order.OrderItems![i]"></partial>
+
+                                    <div class="orderItem-Container-validation" id="container_validation">
+                                            <span asp-validation-for="Order.OrderItems[i]!.Name!"></span>
+                                            <span asp-validation-for="Order.OrderItems[i]!.Quantity!"></span>
+                                            <span asp-validation-for="Order.OrderItems[i]!.Unit"></span>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <button id="add_OrderItem" type="button" class="btn-default add-btn">Добавить элемент заказа</button>
+                </div>
+            </div>
+            <div class="form-body-send">
+                <div class="form-body-send-group">
+                    <input type="submit" class="btn-default" value="@inputValue" />
+                </div>
+                <div class="form-body-send-group">
+                    <a class="btn-default" asp-action="Index">Назад</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <script>
+        function deleteOrderItem(btn)
+        {
+            $(btn).parents('.container-forDelete').remove();
+            $(btn).parents('.orderItem-Container-item').remove();
+        }
+
+        $('#add_OrderItem').on('click', function () {
+            $.ajax({
+                url: '@Url.Action("OrderItemEditor", "Home")',
+                type: 'GET',
+                data: {
+                },
+                success: function (result) {
+                    $('#orderItem-Container').append(result);
+                },
+                error: function () {
+                }
+            });
+        });
+    </script>
+}

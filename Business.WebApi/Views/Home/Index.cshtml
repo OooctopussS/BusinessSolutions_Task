@@ -1,0 +1,141 @@
+﻿@using Business.Domain;
+
+@model OrderFilterVm
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+@section head_Link
+{
+    <link rel="stylesheet" href="~/css/Index.min.css" />
+    <link rel="stylesheet" href="~/css/multiple-select.min.css" />
+}
+
+<div class="main-row">
+
+    <div class="main-row-header">
+        <div class="main-row-header-title">
+            <h2>Таблица</h2>
+        </div>
+        <div class="main-row-header-addBtn">
+            <a asp-controller="Home" asp-action="Upsert" class="btn-default">Добавить заказ</a>
+        </div>
+    </div>
+
+    <form method="post">
+        <div class="filter-row">
+            <div class="multiselect-block">
+                <label asp-for="Numbers"></label>
+                <select asp-for="NumbersValue" asp-items="@Model.Numbers" multiple></select>
+            </div>
+            <div class="multiselect-block">
+                <label class="date-label">Период отображения</label>
+                <div class="multiselect-block-date">
+                    <div>
+                        с&nbsp
+                        <input asp-for="DateStart" autocomplete="off" type="datetime" value="@Model.DateStart" />
+                    </div>
+
+                    <div>
+                        по&nbsp
+                        <input asp-for="DateEnd" autocomplete="off" type="datetime" value="@Model.DateEnd" />
+                    </div>
+                </div>
+            </div>
+            <div class="multiselect-block">
+                <label asp-for="Providers"></label>
+                <select asp-for="ProvidersValue" asp-items="@Model.Providers" multiple></select>
+            </div>
+            <div class="multiselect-block">
+                <label asp-for="Names"></label>
+                <select asp-for="NamesValue" asp-items="@Model.Names" multiple></select>
+            </div>
+            <div class="multiselect-block">
+                <label asp-for="Units"></label>
+                <select asp-for="UnitsValue" asp-items="@Model.Units" multiple></select>
+            </div>
+            <div class="multiselect-btn">
+                <button class="btn-default" type="submit">Фильтровать</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="table-row"> 
+        @if (Model.Orders != null && Model.Orders.Count() > 0)
+        {
+            <div class="table-row-header">
+
+                <div class="table-row-header-column">
+                    <p>Номер заказа</p>
+                </div>
+
+                <div class="table-row-header-column">
+                    <p>Дата</p>
+                </div>
+
+                <div class="table-row-header-column">
+                    <p>Поставщик</p>
+                </div>
+
+                <div class="table-row-header-column">
+                    <p>Элементы заказа</p>
+                </div>
+
+            </div>
+            <div class="table-row-body">
+                @foreach (var item in Model.Orders)
+                {
+                    <div class="table-row-body-item">
+                        <a asp-controller="Home" asp-action="Details" asp-route-Id="@item.Id">
+
+                            <div class="table-row-body-item-column">
+                                <p>@item.Number</p>
+                            </div>
+
+                            <div class="table-row-body-item-column">
+                                <p>@item.Date</p>
+                            </div>
+
+                            <div class="table-row-body-item-column">
+                                <p>@item.Provider!.Name</p>
+                            </div>
+
+                            <div class="table-row-body-item-column">
+                                <p>
+                                    @if (item.OrderItems != null)
+                                    {
+                                        @foreach (var orderItem in item.OrderItems)
+                                        {
+                                           @orderItem!.Name;@:&nbsp;
+                                        }
+                                    }
+                                </p>
+                            </div>
+
+                        </a>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <h3>Таблица пуста</h3>
+        }
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/multiple-select.min.js"></script>
+
+    <script>
+      $(function () {
+        $('select').multipleSelect(
+        {
+            width: '200px',
+            filter: 'true',
+            ellipsis: true
+        })
+      })
+    </script>
+}

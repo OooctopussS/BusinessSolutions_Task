@@ -1,0 +1,112 @@
+﻿.main-row {
+    padding: 20px 0px;
+
+    &-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+
+        &-title {
+            display: grid;
+            justify-self: start;
+
+            h2 {
+                font-size: 28px;
+            }
+        }
+
+        &-addBtn {
+            display: grid;
+            justify-self: end;
+
+            a {
+                font-size: 24px;
+            }
+        }
+    }
+
+    .filter-row {
+        margin: 60px 0px;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr 1fr 1fr 0.5fr;
+        align-items: center;
+
+        .multiselect-block {
+            display: grid;
+            grid-row-gap: 5px;
+
+            .date-label {
+                justify-self: center;
+            }
+
+            &-date {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+                justify-items: center;
+
+                input {
+                    height: 26px;
+                    padding: 5px;
+                    overflow: hidden;
+                    cursor: pointer;
+                    border: 1px solid #aaa;
+                    text-align: left;
+                    white-space: nowrap;
+                    line-height: 26px;
+                    color: #444;
+                    text-decoration: none;
+                    border-radius: 4px;
+                    background-color: #fff;
+                }
+            }
+        }
+
+        .multiselect-btn {
+            align-self: end;
+        }
+    }
+
+    .table-row {
+        display: grid;
+        grid-row-gap: 30px;
+        margin-top: 20px;
+
+        &-header {
+            display: grid;
+            grid-template-columns: repeat(3, 0.5fr) 1fr;
+            grid-column-gap: 10px;
+
+            &-column {
+                p {
+                    font-size: 24px;
+                }
+            }
+        }
+
+        &-body {
+            display: grid;
+            grid-row-gap: 40px;
+
+            &-item {
+                a {
+                    display: grid;
+                    grid-template-columns: repeat(3, 0.5fr) 1fr;
+                    grid-column-gap: 10px;
+                    padding-bottom: 20px;
+                    border-bottom: 1px solid #fff;
+
+                    .table-row-body-item-column {
+                        p {
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+    }
+}

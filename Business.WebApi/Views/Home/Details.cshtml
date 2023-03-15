@@ -1,0 +1,66 @@
+﻿@model Business.Domain.Order
+
+@{
+    ViewData["Title"] = Model.Number;
+}
+
+@section head_Link
+{
+    <link rel="stylesheet" href="~/css/Details.min.css" />
+}
+
+<div class="main-row">
+    <div class="main-row-body">
+
+        <div class="main-row-body-header">
+            <h2>Информация об заказе: <span>@Model.Number</span></h2>
+        </div>
+
+        <div class="main-row-body-inf">
+            <div class ="main-row-body-inf-row">
+                <label asp-for="Date"></label>
+                <input asp-for="Date" type="datetime-local" autocomplete="off" disabled/>
+            </div>
+            <div class ="main-row-body-inf-row">
+                <label asp-for="ProviderId"></label>
+                <input asp-for="Provider!.Name" autocomplete="off" disabled />
+            </div>
+        </div>
+
+        @if (Model.OrderItems != null && Model.OrderItems.Count() > 0)
+        {
+            <div class="orderItems-header">
+                <h3>Список элементов заказа</h3>
+            </div>
+            <div class="main-row-body-orderItems">
+                @for (int i = 0; i < Model.OrderItems!.Count(); i++)
+                {
+                    <div class="main-row-body-orderItems-item">
+                        <div class="item-inf">
+                            <label asp-for="OrderItems![i]!.Name"></label>
+                            <input asp-for="OrderItems![i]!.Name" disabled>
+                        </div>
+                        <div class="item-inf">
+                            <label asp-for="OrderItems![i]!.Quantity"></label>
+                            <input asp-for="OrderItems![i]!.Quantity" disabled>
+                        </div>
+                        <div class="item-inf">
+                            <label asp-for="OrderItems![i]!.Unit"></label>
+                            <input asp-for="OrderItems![i]!.Unit" disabled>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+
+        <div class="main-row-body-links">
+            <div class="link">
+                <a asp-controller="Home" asp-action="Upsert" asp-route-Id="@Model.Id" class="btn-default">Редактировать</a>
+            </div>
+            <div class="link">
+                <a asp-controller="Home" asp-action="Delete" asp-route-Id="@Model.Id" class="btn-danger">Удалить</a>
+            </div>
+
+        </div>
+    </div>
+</div>
