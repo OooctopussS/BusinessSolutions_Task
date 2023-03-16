@@ -5,10 +5,12 @@
     ViewData["Title"] = "Создание заказа";
 
     string inputValue = string.Empty;
+    DateTime? dateValue = DateTime.Now;
 
     if (Model.Order.Id != 0)
     {
         inputValue = "Сохранить";
+        dateValue = Model.Order.Date;
     }
     else
     {
@@ -42,7 +44,7 @@
                 </div>
                 <div class="form-body-order-group">
                     <label asp-for="Order.Date"></label>
-                    <input asp-for="Order.Date" autocomplete="off" type="datetime" value="@DateTime.Now"/>
+                    <input asp-for="Order.Date" autocomplete="off" type="datetime" value="@dateValue"/>
                     <span asp-validation-for="Order.Date"></span>
                 </div>
                 <div class="form-body-order-group">
