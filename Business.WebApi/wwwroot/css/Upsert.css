@@ -48,7 +48,7 @@
 .main-row .form-body-order .form-body-orderItems .orderItem-Container-item {
   margin-top: 20px;
   display: grid;
-  grid-template-columns: repeat(4, 0.2fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 20px;
   align-items: center;
 }
@@ -66,7 +66,7 @@
 }
 .main-row .form-body-order .form-body-orderItems .orderItem-Container-validation {
   display: grid;
-  grid-template-columns: repeat(4, 0.2fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 20px;
   align-items: center;
 }
@@ -85,4 +85,78 @@
 }
 .main-row .form-body-send-group a, .main-row .form-body-send-group input[type=submit] {
   font-size: 24px;
+}
+
+@media (max-width: 991px) {
+  .main-row .form-body-order .form-body-orderItems .orderItem-Container-validation span {
+    font-size: 14px;
+  }
+}
+@media (max-width: 991px) {
+  .main-row .form-body-order .form-body-orderItems .orderItem-Container-validation {
+    grid-template-columns: repeat(4, 110px);
+  }
+}
+@media (max-width: 575px) {
+  .main-row .form-body-order .form-body-orderItems .orderItem-Container-validation {
+    grid-template-columns: repeat(4, 115px);
+  }
+  .main-row .form-body-order .form-body-orderItems .orderItem-Container-validation {
+    grid-template-columns: repeat(3, 1fr) 1.5fr;
+  }
+  .main-row .form-body-order .form-body-orderItems .orderItem-Container-validation span {
+    font-size: 10px;
+  }
+}
+@media (max-width: 480px) {
+  .main-row .form-body-order .form-body-orderItems .orderItem-Container-item {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .main-row .form-body-order .form-body-orderItems .orderItem-Container-validation {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 444px) {
+  .main-row .form-body-send-group a, .main-row .form-body-send-group input[type=submit] {
+    font-size: 18px;
+  }
+}
+@media (max-width: 385px) {
+  .main-row .form-body-order-group {
+    display: grid;
+    justify-items: center;
+  }
+  .main-row .form-body-order-group label {
+    margin-bottom: 0px;
+  }
+  .main-row .form-body-order-group:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  .form-body-orderItems {
+    text-align: center;
+  }
+  .main-row .form-body-order .form-body-orderItems .orderItem-Container-item-group button {
+    width: 100%;
+  }
+  .main-row .form-body-order .form-body-orderItems .add-btn {
+    font-size: 16px;
+  }
+  .main-row .form-body-send {
+    margin-top: 30px;
+    grid-template-columns: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 10px;
+    justify-items: center;
+  }
+  .main-row .form-body-send-group a, .main-row .form-body-send-group input[type=submit] {
+    width: 200px;
+  }
+}
+@media (max-width: 300px) {
+  .main-row .form-body-order-group input, .main-row .form-body-order-group select {
+    width: 80%;
+  }
+  .main-row .form-body-order .form-body-orderItems .add-btn {
+    width: 80%;
+  }
 }

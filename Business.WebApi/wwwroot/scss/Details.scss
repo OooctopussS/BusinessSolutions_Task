@@ -34,7 +34,7 @@
                 }
 
                 input {
-                    width: 30%;
+                    width: 50%;
                 }
             }
         }
@@ -77,3 +77,49 @@
         }
     }
 }
+
+@media (max-width: 767px) {
+    .main-row-body-orderItems-item {
+        grid-template-columns: repeat(2,.2fr);
+    }
+}
+
+@media (max-width: 530px) {
+    .main-row-body-header{
+        text-align: center;
+    }
+
+    .main-row-body-inf-row input {
+        width: 100%;
+    }
+    .main-row-body-inf {
+        justify-items: center;
+    }
+
+    .main-row-body .orderItems-header {
+        text-align: center;
+    }
+
+    .main-row-body-orderItems {
+        grid-row-gap: 30px;
+        justify-items: center;
+    }
+
+    .main-row-body-orderItems-item {
+        grid-template-columns: 1fr;
+    }
+
+    .main-row-body-links .link a{
+        font-size: 18px;
+    }
+    .main-row-body-links{
+        grid-template-columns: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 40px;
+        justify-items: center;
+    }
+    .main-row-body-links .link:last-child {
+        grid-column: auto;
+    }
+}
+

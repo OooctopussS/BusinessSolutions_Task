@@ -57,19 +57,19 @@ namespace Business.WebApi.Common.Validators
         {
             RuleFor(i => i.Name)
                 .NotEmpty()
-                .WithMessage("Это поле обязательноe");
+                .WithMessage("Поле Name обязательноe");
 
             RuleFor(i => i.Quantity)
                 .GreaterThanOrEqualTo(0)
-                .WithMessage("Значение не должно быть отрицательным");
+                .WithMessage("Значение Quantity не должно быть отрицательным");
 
             RuleFor(i => i.Quantity)
                 .NotNull()
-                .WithMessage("Некорректное значение");
+                .WithMessage("Некорректное значение Quantity");
 
             RuleFor(i => i.Unit)
                 .NotEmpty()
-                .WithMessage("Это поле обязательноe");
+                .WithMessage("Поле Unit обязательноe");
         }
     }
 }
